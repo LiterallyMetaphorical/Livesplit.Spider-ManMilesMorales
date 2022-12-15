@@ -13,7 +13,10 @@ state("MilesMorales", "Steam v1.1122")
 state("MilesMorales", "Steam v1.1130")
 {
     int loading      : 0x7A2AFC4; 
-    uint objective   : 0x701DE44; // not made yet
+}
+state("MilesMorales", "Steam v1.1209")
+{
+    int loading      : 0x7A2BFC4; 
 }
 
 init
@@ -27,6 +30,9 @@ init
             break;
         case 150929408: 
             version = "Steam v1.1130";
+            break;
+        case 150937600: 
+            version = "Steam v1.1209";
             break;
     default:
         print("Unknown version detected");
@@ -69,7 +75,7 @@ update
         //Use cases for each version of the game listed in the State method
 		switch (version) 
 	{
-		case "Steam v1.1122": case "Steam v1.1130":
+		case "Steam v1.1122": case "Steam v1.1130": case "Steam v1.1209":
 			vars.loading = current.loading == 1;
 			break;
 	}
