@@ -14,9 +14,9 @@ state("MilesMorales", "Steam v1.1130")
 {
     int loading      : 0x7A2AFC4; 
 }
-state("MilesMorales", "Steam v1.1209")
+state("MilesMorales", "Steam v2.209")
 {
-    int loading      : 0x7A2BFC4; 
+    int loading      : 0x7A2C004; 
 }
 
 init
@@ -32,8 +32,8 @@ init
             version = "Steam v1.1130";
             break;
         case 150937600: 
-            version = "Steam v1.1209";
-            break;
+            version = "Steam v2.209";
+            break;   
     default:
         print("Unknown version detected");
         return false;
@@ -69,6 +69,7 @@ onStart
 update
 {
 //DEBUG CODE 
+//print(modules.First().ModuleMemorySize.ToString());
 //print(current.loading.ToString()); 
 //print(current.objective.ToString());
 
