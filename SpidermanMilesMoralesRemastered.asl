@@ -7,22 +7,24 @@ When scanning, make sure to look for interior loads, checkpoint loads, fast trav
 
 state("MilesMorales", "Steam v1.1122")
 {
-    int loading      : 0x7A29E84; 
+    bool loading      : 0x7A29E84; 
     uint objective   : 0x701DE44; // not made yet
 }
 state("MilesMorales", "Steam v1.1130")
 {
-    int loading      : 0x7A2AFC4; 
+    bool loading      : 0x7A2AFC4; 
 }
 state("MilesMorales", "Steam v2.209")
 {
-    int loading      : 0x7A2C004; 
+    bool loading      : 0x7A2C004; 
+}
+state("MilesMorales", "Steam v2.516")
+{
+    bool loading      : 0x7A2F124; 
 }
 
 init
 {
-    vars.loading = false;
-
     switch (modules.First().ModuleMemorySize) 
     {
         case 150925312: 
@@ -34,6 +36,9 @@ init
         case 150937600: 
             version = "Steam v2.209";
             break;   
+        case 151015424:
+            version = "Steam v2.516";
+            break; 
     default:
         print("Unknown version detected");
         return false;
@@ -72,15 +77,6 @@ update
 //print(modules.First().ModuleMemorySize.ToString());
 //print(current.loading.ToString()); 
 //print(current.objective.ToString());
-
-        //Use cases for each version of the game listed in the State method
-		switch (version) 
-	{
-		case "Steam v1.1122": case "Steam v1.1130": case "Steam v1.1209":
-			vars.loading = current.loading == 1;
-			break;
-	}
-
 }
 
 /*
@@ -92,7 +88,7 @@ start
 
 isLoading
 {
-    return vars.loading;
+    return current.loading;
 }
 
 exit
